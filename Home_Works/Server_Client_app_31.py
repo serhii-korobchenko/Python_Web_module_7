@@ -11,7 +11,7 @@ def run_server(ip, port, msg_ser):  # input TCP_IP and TCP_PORT
             received = sock.recv(1024)
             if not received:
                 break
-                client_process.join()
+                server_process.join()
             data = received.decode()
             print(f'>>> {data} <<< Data received from other side')
             sock.send(msg_ser.encode())

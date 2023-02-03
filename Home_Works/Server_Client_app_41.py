@@ -11,7 +11,7 @@ def run_server(ip, port, msg_ser):  # input TCP_IP and TCP_PORT
             received = sock.recv(1024)
             if not received:
                 break
-                client_process.join()
+                server_process.join()
             data = received.decode()
             print(f'>>> {data} <<< Data received from other side')
             sock.send(msg_ser.encode())
@@ -32,7 +32,7 @@ def run_server(ip, port, msg_ser):  # input TCP_IP and TCP_PORT
         except KeyboardInterrupt:
             print(f'..........Destroy server')
         finally:
-            server_socket.close()
+
             server_process.join()
 
 def run_communication(adr, port):
@@ -64,6 +64,6 @@ def run_client(ip: str, port: int, msg: str):
 
 if __name__ == '__main__':
 
-    server_process = Process (target=run_server, args=('192.168.83.37', 3000, "OK")) #server initiation
+    server_process = Process (target=run_server, args=('46.211.85.119', 8080, "OK")) #server initiation
     server_process.start()
-    run_communication('192.168.83.37', 3000) #client initiation
+    run_communication('172.18.0.76', 3000) #client initiation
